@@ -19,6 +19,22 @@ user_idd = os.environ["USER_IDD"]
 template_id = os.environ["TEMPLATE_ID"]
 
 
+def get_constellation():
+  app_key = "0aa9380089d85d911d929076b06b0aae"
+  url = "http://web.juhe.cn/constellation/getAll?"
+  params = {
+    "key": app_key,
+    "consName": input_entry.get(),
+    "type": pull_value.get()
+  }
+  response = requests.get(url, params=params)
+  response = json.loads(response.text)
+  if response["resultcode"] == "200":
+    retnum = response["number"]
+    retcolor = response["color"]
+    retdate = response["datetime"]
+  return retnum,retcolor,retdate
+
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
@@ -48,8 +64,9 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
+luckynum, luckycolor, todate = get_get_constellation()
 wea, temperature = get_weather()
-data = {"city":{"value":city, "color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"temperature":{"value":temperature, "color":get_random_color()},"love_days":{"value":get_count(), "color":get_random_color()},"birthday_left":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"lucknum":{"value":luckynum, "color":get_random_color()},"luckcolor":{"value":luckycolor, "color":get_random_color()},"date":{"value":todate, "color":get_random_color()},"city":{"value":city, "color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"temperature":{"value":temperature, "color":get_random_color()},"love_days":{"value":get_count(), "color":get_random_color()},"birthday_left":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 res = wm.send_template(user_idd, template_id, data)
 print(res)
