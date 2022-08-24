@@ -23,9 +23,9 @@ def get_constellation():
   app_key = "0aa9380089d85d911d929076b06b0aae"
   url = "http://web.juhe.cn/constellation/getAll?"
   params = {
-    "key": app_key,
-    "consName": input_entry.get(),
-    "type": pull_value.get()
+    "key": "0aa9380089d85d911d929076b06b0aae",
+    "consName": "天秤座",
+    "type": "today"
   }
   response = requests.get(url, params=params)
   response = json.loads(response.text)
