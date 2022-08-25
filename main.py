@@ -19,13 +19,15 @@ user_id = os.environ["USER_ID"]
 user_idd = os.environ["USER_IDD"]
 template_id = os.environ["TEMPLATE_ID"]
 
+app_key = os.environ["APP_KEY"]
+constellation = os.environ["CONSTELLATION"]
 
 def get_constellation():
-  app_key = "0aa9380089d85d911d929076b06b0aae"
+  
   url = "http://web.juhe.cn/constellation/getAll?"
   params = {
-    "key": "0aa9380089d85d911d929076b06b0aae",
-    "consName": "天秤座",
+    "key": app_key,
+    "consName": constellation,
     "type": "today"
   }
   response = requests.get(url, params=params)
