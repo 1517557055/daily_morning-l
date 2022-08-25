@@ -28,6 +28,8 @@ jobs:
       TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
       USER_ID: ${{ secrets.USER_ID }}
       USER_IDD: ${{ secrets.USER_IDD }}
+      APP_KEY: ${{ secrets.APP_KEY }}
+      CONSTELLATION: ${{ secrets.CONSTELLATION }}
       START_DATE: ${{ secrets.START_DATE }}
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
       CITY: ${{ secrets.CITY }}
