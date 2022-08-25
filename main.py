@@ -30,8 +30,8 @@ def get_constellation():
     "consName": constellation,
     "type": "today"
   }
-  response = requests.get(url, params=params)
-  response = json.loads(response.text)
+  response = requests.get(url, params=params).json()
+  
   if response["resultcode"] == "200":
     retnum = response["number"]
     retcolor = response["color"]
