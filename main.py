@@ -21,6 +21,8 @@ template_id = os.environ["TEMPLATE_ID"]
 app_key = os.environ["APP_KEY"]
 constellation = os.environ["CONSTELLATION"]
 
+sisname = os.environ["USER_NAME"]
+
 def get_constellation():
   
   url = "http://web.juhe.cn/constellation/getAll?"
@@ -68,7 +70,7 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 luckynum, luckycolor, todate = get_constellation()
 wea, temperature = get_weather()
-data = {"lucknum":{"value":luckynum, "color":get_random_color()},"luckcolor":{"value":luckycolor, "color":get_random_color()},"date":{"value":todate, "color":get_random_color()},"city":{"value":city, "color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"temperature":{"value":temperature, "color":get_random_color()},"love_days":{"value":get_count(), "color":get_random_color()},"birthday_left":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"lucknum":{"value":luckynum, "color":get_random_color()},"luckcolor":{"value":luckycolor, "color":get_random_color()},"date":{"value":todate, "color":get_random_color()},"city":{"value":city, "color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"temperature":{"value":temperature, "color":get_random_color()},"love_days":{"value":get_count(), "color":get_random_color()},"sis_name":{"value":sisname, "color":get_random_color()},"birthday_left":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 res = wm.send_template(user_idd, template_id, data)
 print(res)
