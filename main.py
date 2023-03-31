@@ -40,10 +40,11 @@ def get_constellation():
   return retnum,retcolor,retdate
 
 def get_weather():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  url = "http://www.weather.com.cn/data/sk/101050101.html"
   res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['temp'])
+  weather = res['data']['weatherinfo'][0]
+  wwea = weather['WD']
+  return wwea..decode('gbk'), math.floor(weather['temp'])
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
